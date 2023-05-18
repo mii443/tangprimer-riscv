@@ -28,7 +28,7 @@
     "InstLine" : 36,
     "InstName" : "core0",
     "ModuleFile" : "C:/Users/kuroc/Downloads/cpu/src/core.v",
-    "ModuleLine" : 1,
+    "ModuleLine" : 3,
     "ModuleName" : "CORE"
    }
   ]

@@ -10,7 +10,7 @@ module MEMORY(
     output [31:0] rdata
 );
 
-    reg [7:0] mem [512:0];
+    reg [7:0] mem [32:0];
     
     reg [31:0] reg_raddr;
     

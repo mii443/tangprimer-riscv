@@ -8,6 +8,7 @@
         <File path="C:\Users\kuroc\Downloads\cpu\src\top.v" type="verilog"/>
         <File path="C:\Users\kuroc\Downloads\cpu\src\uart.v" type="verilog"/>
         <File path="C:\Users\kuroc\Downloads\cpu\src\core.v" type="verilog"/>
+        <File path="C:\Users\kuroc\Downloads\cpu\src\defs.vh" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>

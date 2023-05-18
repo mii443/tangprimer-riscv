@@ -1,3 +1,5 @@
+`include "defs.vh"
+
 module CORE(
     input clock,
 
@@ -39,9 +41,9 @@ module CORE(
     wire [31:0] rs2_data;
 
     reg [11:0] i_imm;
-    reg [31:0] i_imm_sext;
+    wire [31:0] i_imm_sext;
     reg [11:0] s_imm;
-    reg [31:0] s_imm_sext;
+    wire [31:0] s_imm_sext;
     reg [12:0] b_imm;
     reg [31:0] u_imm;
     reg [20:0] j_imm;
@@ -78,7 +80,6 @@ module CORE(
                 reg_tx_start <= 1;
                 reg_tx_data <= rdata[31:24];
                 REGISTER_TEST <= register[1][31:0];
-                reg_iaddr <= pc;
                 reg_inst <= inst;
                 pc_p4 <= pc + 4;
 
@@ -94,9 +95,7 @@ module CORE(
                 funct7 = reg_inst[25+:7];
 
                 i_imm <= reg_inst[20+:12];
-                i_imm_sext <= { {20{i_imm[11]}}, i_imm[10:0] };
                 s_imm <= { reg_inst[31:25], reg_inst[11:7] };
-                s_imm_sext <= { {20{s_imm[11]}}, s_imm[10:0] };
                 b_imm = { reg_inst[25+:7], reg_inst[7+:5] };
                 u_imm[31:12] = reg_inst[31:12];
                 j_imm = {{12{reg_inst[31]}}, reg_inst[19:12], reg_inst[20], reg_inst[30:25], reg_inst[24:21], 1'b0};
@@ -106,23 +105,33 @@ module CORE(
 
             ST_EX: begin
 
-                alu_out = rs1_data + s_imm;
+                case (opcode)
+                    `OP_SW:
+                        alu_out = rs1_data + s_imm_sext;
+                    `OP_LW:
+                        alu_out = rs1_data + i_imm_sext;
+                endcase
 
                 stage <= ST_ACCESS;
             end
 
             ST_ACCESS: begin
                 reg_raddr = alu_out;
-                reg_wen = opcode == 7'b0100011;
+                reg_wen = opcode == `OP_SW;
                 reg_wdata = rs2_data;
 
                 stage <= ST_WB;
             end
 
             ST_WB: begin
-                pc <= pc_p4;
-                reg_wen <= 0;
-                reg_raddr = 4;
+
+                if (opcode == `OP_LW)
+                    register[rd] <= rdata;
+
+                pc = pc_p4;
+                alu_out = 0;
+                reg_wen = 0;
+                reg_iaddr = pc_p4;
 
                 stage <= ST_IF;
             end
@@ -131,6 +140,9 @@ module CORE(
 
     assign rs1_data = register[rs1];
     assign rs2_data = register[rs2];
+
+    assign i_imm_sext = { {20{i_imm[11]}}, i_imm[10:0] };
+    assign s_imm_sext = { {20{s_imm[11]}}, s_imm[10:0] };
 
     assign tx_start = reg_tx_start;
     assign tx_data = reg_tx_data;

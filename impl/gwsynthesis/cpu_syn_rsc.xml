@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module name="TOP">
-    <SubModule name="uart0" Register="52" Alu="31" Lut="36"/>
-    <SubModule name="mem0" Register="156" Lut="931"/>
-    <SubModule name="core0" Register="92" Alu="7" Lut="27"/>
+    <SubModule name="uart0" Register="58" Alu="31" Lut="39"/>
+    <SubModule name="mem0" Register="512" Alu="78" Lut="4036"/>
+    <SubModule name="core0" Register="185" Alu="62" Lut="125" Bsram="2"/>
 </Module>

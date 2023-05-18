@@ -4,14 +4,18 @@ Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\memory.v'
 Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\top.v'
 Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\uart.v'
 Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\core.v'
+Analyzing included file 'C:\Users\kuroc\Downloads\cpu\src\defs.vh'("C:\Users\kuroc\Downloads\cpu\src\core.v":1)
+Back to file 'C:\Users\kuroc\Downloads\cpu\src\core.v'("C:\Users\kuroc\Downloads\cpu\src\core.v":1)
+Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\defs.vh'
 Compiling module 'TOP'("C:\Users\kuroc\Downloads\cpu\src\top.v":1)
 Compiling module 'UART'("C:\Users\kuroc\Downloads\cpu\src\uart.v":1)
 WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Users\kuroc\Downloads\cpu\src\uart.v":98)
 Compiling module 'MEMORY'("C:\Users\kuroc\Downloads\cpu\src\memory.v":1)
 Extracting RAM for identifier 'mem'("C:\Users\kuroc\Downloads\cpu\src\memory.v":13)
-Compiling module 'CORE'("C:\Users\kuroc\Downloads\cpu\src\core.v":1)
-Extracting RAM for identifier 'register'("C:\Users\kuroc\Downloads\cpu\src\core.v":17)
-WARN  (EX3791) : Expression size 32 truncated to fit in target size 21("C:\Users\kuroc\Downloads\cpu\src\core.v":102)
+WARN  (EX3784) : Index 33 is out of range [32:0] for 'mem'("C:\Users\kuroc\Downloads\cpu\src\memory.v":19)
+Compiling module 'CORE'("C:\Users\kuroc\Downloads\cpu\src\core.v":3)
+Extracting RAM for identifier 'register'("C:\Users\kuroc\Downloads\cpu\src\core.v":19)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 21("C:\Users\kuroc\Downloads\cpu\src\core.v":101)
 NOTE  (EX0101) : Current top module is "TOP"
 [5%] Running netlist conversion ...
 Running device independent optimization ...
