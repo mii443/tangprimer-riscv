@@ -1,0 +1,36 @@
+[
+ {
+  "InstFile" : "C:/Users/kuroc/Downloads/cpu/src/top.v",
+  "InstLine" : 1,
+  "InstName" : "TOP",
+  "ModuleFile" : "C:/Users/kuroc/Downloads/cpu/src/top.v",
+  "ModuleLine" : 1,
+  "ModuleName" : "TOP",
+  "SubInsts" : [
+   {
+    "InstFile" : "C:/Users/kuroc/Downloads/cpu/src/top.v",
+    "InstLine" : 11,
+    "InstName" : "uart0",
+    "ModuleFile" : "C:/Users/kuroc/Downloads/cpu/src/uart.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "UART"
+   },
+   {
+    "InstFile" : "C:/Users/kuroc/Downloads/cpu/src/top.v",
+    "InstLine" : 26,
+    "InstName" : "mem0",
+    "ModuleFile" : "C:/Users/kuroc/Downloads/cpu/src/memory.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "MEMORY"
+   },
+   {
+    "InstFile" : "C:/Users/kuroc/Downloads/cpu/src/top.v",
+    "InstLine" : 36,
+    "InstName" : "core0",
+    "ModuleFile" : "C:/Users/kuroc/Downloads/cpu/src/core.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "CORE"
+   }
+  ]
+ }
+]
