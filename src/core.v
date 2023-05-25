@@ -30,6 +30,9 @@ module CORE(
     reg [31:0] reg_wdata;
     reg reg_wen;
 
+    reg [31:0] reg_wb_data;
+    reg reg_wb_wen;
+
     reg [6:0] opcode;
     reg [4:0] rd;
     reg [2:0] funct3;
@@ -62,7 +65,10 @@ module CORE(
         for (i=0;i<32;i=i+1) register[i] <= 31'b0;
         register[0] <= 32'b00000000000000000000000000000000;
         register[1] <= 32'b00000000000000000000000000000000;
-        register[2] <= 32'b00000000000000000000000001000001;
+        register[2] <= 32'b00000000000000000000000000000000;
+    
+        reg_wb_data = 0;
+        reg_wb_wen = 0;
 
         pc = 0;
         reg_inst = 0;
@@ -79,7 +85,7 @@ module CORE(
             ST_IF: begin
                 reg_tx_start <= 1;
                 reg_tx_data <= rdata[31:24];
-                REGISTER_TEST <= register[1][31:0];
+                REGISTER_TEST <= register[4][31:0];
                 reg_inst <= inst;
                 pc_p4 <= pc + 4;
 
@@ -104,13 +110,18 @@ module CORE(
             end
 
             ST_EX: begin
-
-                case (opcode)
-                    `OP_SW:
-                        alu_out = rs1_data + s_imm_sext;
-                    `OP_LW:
-                        alu_out = rs1_data + i_imm_sext;
-                endcase
+                if ((reg_inst & `MASK_OP_SW) == `OP_SW)
+                    alu_out = rs1_data + s_imm_sext;
+                if ((reg_inst & `MASK_OP_LW) == `OP_LW)
+                    alu_out = rs1_data + i_imm_sext;
+                if ((reg_inst & `MASK_OP_LUI) == `OP_LUI) begin
+                    reg_wb_data[31:12] = u_imm[31:12];
+                    reg_wb_wen = 1;
+                end
+                if ((reg_inst & `MASK_OP_ADDI) == `OP_ADDI) begin
+                    reg_wb_data = rs1_data + i_imm_sext;
+                    reg_wb_wen = 1;
+                end
 
                 stage <= ST_ACCESS;
             end
@@ -127,7 +138,10 @@ module CORE(
 
                 if (opcode == `OP_LW)
                     register[rd] <= rdata;
+                if (reg_wb_wen == 1)
+                    register[rd] <= reg_wb_data;
 
+                reg_wb_wen = 0;
                 pc = pc_p4;
                 alu_out = 0;
                 reg_wen = 0;

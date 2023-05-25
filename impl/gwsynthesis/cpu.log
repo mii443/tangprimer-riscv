@@ -15,7 +15,7 @@ Extracting RAM for identifier 'mem'("C:\Users\kuroc\Downloads\cpu\src\memory.v":
 WARN  (EX3784) : Index 33 is out of range [32:0] for 'mem'("C:\Users\kuroc\Downloads\cpu\src\memory.v":19)
 Compiling module 'CORE'("C:\Users\kuroc\Downloads\cpu\src\core.v":3)
 Extracting RAM for identifier 'register'("C:\Users\kuroc\Downloads\cpu\src\core.v":19)
-WARN  (EX3791) : Expression size 32 truncated to fit in target size 21("C:\Users\kuroc\Downloads\cpu\src\core.v":101)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 21("C:\Users\kuroc\Downloads\cpu\src\core.v":107)
 NOTE  (EX0101) : Current top module is "TOP"
 [5%] Running netlist conversion ...
 Running device independent optimization ...
