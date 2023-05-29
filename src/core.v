@@ -48,7 +48,8 @@ module CORE(
     reg [11:0] s_imm;
     wire [31:0] s_imm_sext;
     reg [12:0] b_imm;
-    reg [31:0] u_imm;
+    reg [19:0] u_imm;
+    wire [31:0] u_imm_sext;
     reg [20:0] j_imm;
 
     reg [31:0] alu_out;
@@ -103,7 +104,7 @@ module CORE(
                 i_imm <= reg_inst[20+:12];
                 s_imm <= { reg_inst[31:25], reg_inst[11:7] };
                 b_imm = { reg_inst[25+:7], reg_inst[7+:5] };
-                u_imm[31:12] = reg_inst[31:12];
+                u_imm = reg_inst[31:12];
                 j_imm = {{12{reg_inst[31]}}, reg_inst[19:12], reg_inst[20], reg_inst[30:25], reg_inst[24:21], 1'b0};
 
                 stage <= ST_EX;
@@ -121,6 +122,26 @@ module CORE(
                 if ((reg_inst & `MASK_OP_ADDI) == `OP_ADDI) begin
                     reg_wb_data = rs1_data + i_imm_sext;
                     reg_wb_wen = 1;
+                end
+                if ((reg_inst & `MASK_OP_AUIPC) == `OP_AUIPC) begin
+                    pc_p4 <= pc_p4 + (u_imm_sext << 12);
+                    reg_wb_data <= pc_p4 + (u_imm_sext << 12);
+                    reg_wb_wen = 1;
+                end
+                if ((reg_inst & `MASK_OP_JAL) == `OP_JAL) begin
+                    reg_wb_data <= pc + 4;
+                    reg_wb_wen = 1;
+                    pc_p4 <= pc_p4 + j_imm;
+                end
+                if ((reg_inst & `MASK_OP_JALR) == `OP_JALR) begin
+                    reg_wb_data <= pc + 4;
+                    reg_wb_wen = 1;
+                    pc_p4 <= (rs1_data + i_imm_sext) & 1'b0;
+                end
+                if ((reg_inst & `MASK_OP_BEQ) == `OP_BEQ) begin
+                    if (rs1_data == rs2_data) begin
+                        
+                    end
                 end
 
                 stage <= ST_ACCESS;
@@ -157,6 +178,7 @@ module CORE(
 
     assign i_imm_sext = { {20{i_imm[11]}}, i_imm[10:0] };
     assign s_imm_sext = { {20{s_imm[11]}}, s_imm[10:0] };
+    assign u_imm_sext = { {12{u_imm[19]}}, u_imm[18:0] };
 
     assign tx_start = reg_tx_start;
     assign tx_data = reg_tx_data;

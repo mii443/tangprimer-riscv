@@ -1,12 +1,12 @@
 GowinSynthesis start
 Running parser ...
-Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\memory.v'
-Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\top.v'
-Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\uart.v'
 Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\core.v'
 Analyzing included file 'C:\Users\kuroc\Downloads\cpu\src\defs.vh'("C:\Users\kuroc\Downloads\cpu\src\core.v":1)
 Back to file 'C:\Users\kuroc\Downloads\cpu\src\core.v'("C:\Users\kuroc\Downloads\cpu\src\core.v":1)
 Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\defs.vh'
+Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\memory.v'
+Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\top.v'
+Analyzing Verilog file 'C:\Users\kuroc\Downloads\cpu\src\uart.v'
 Compiling module 'TOP'("C:\Users\kuroc\Downloads\cpu\src\top.v":1)
 Compiling module 'UART'("C:\Users\kuroc\Downloads\cpu\src\uart.v":1)
 WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Users\kuroc\Downloads\cpu\src\uart.v":98)
@@ -15,7 +15,8 @@ Extracting RAM for identifier 'mem'("C:\Users\kuroc\Downloads\cpu\src\memory.v":
 WARN  (EX3784) : Index 33 is out of range [32:0] for 'mem'("C:\Users\kuroc\Downloads\cpu\src\memory.v":19)
 Compiling module 'CORE'("C:\Users\kuroc\Downloads\cpu\src\core.v":3)
 Extracting RAM for identifier 'register'("C:\Users\kuroc\Downloads\cpu\src\core.v":19)
-WARN  (EX3791) : Expression size 32 truncated to fit in target size 21("C:\Users\kuroc\Downloads\cpu\src\core.v":107)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 21("C:\Users\kuroc\Downloads\cpu\src\core.v":108)
+WARN  (EX3784) : Index 31 is out of range [19:0] for 'u_imm'("C:\Users\kuroc\Downloads\cpu\src\core.v":119)
 NOTE  (EX0101) : Current top module is "TOP"
 [5%] Running netlist conversion ...
 Running device independent optimization ...
@@ -33,6 +34,8 @@ Running technical mapping ...
 [75%] Tech-Mapping Phase 2 completed
 [80%] Tech-Mapping Phase 3 completed
 [90%] Tech-Mapping Phase 4 completed
+WARN  (NL0002) : The module "CORE" instantiated to "core0" is swept in optimizing("C:\Users\kuroc\Downloads\cpu\src\top.v":46)
+WARN  (NL0002) : The module "MEMORY" instantiated to "mem0" is swept in optimizing("C:\Users\kuroc\Downloads\cpu\src\top.v":34)
 [95%] Generate netlist file "C:\Users\kuroc\Downloads\cpu\impl\gwsynthesis\cpu.vg" completed
 [100%] Generate report file "C:\Users\kuroc\Downloads\cpu\impl\gwsynthesis\cpu_syn.rpt.html" completed
 GowinSynthesis finish

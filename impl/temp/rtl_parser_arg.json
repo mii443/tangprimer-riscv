@@ -1,6 +1,14 @@
 {
  "Files" : [
   {
+   "Path" : "C:/Users/kuroc/Downloads/cpu/src/core.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/kuroc/Downloads/cpu/src/defs.vh",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "C:/Users/kuroc/Downloads/cpu/src/memory.v",
    "Type" : "verilog"
   },
@@ -10,14 +18,6 @@
   },
   {
    "Path" : "C:/Users/kuroc/Downloads/cpu/src/uart.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "C:/Users/kuroc/Downloads/cpu/src/core.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "C:/Users/kuroc/Downloads/cpu/src/defs.vh",
    "Type" : "verilog"
   }
  ],

@@ -4,11 +4,11 @@
     <Version>beta</Version>
     <Device id="GW2A-18C" package="PBGA256" speed="8" partNumber="GW2A-LV18PG256C8/I7"/>
     <FileList>
+        <File path="C:\Users\kuroc\Downloads\cpu\src\core.v" type="verilog"/>
+        <File path="C:\Users\kuroc\Downloads\cpu\src\defs.vh" type="verilog"/>
         <File path="C:\Users\kuroc\Downloads\cpu\src\memory.v" type="verilog"/>
         <File path="C:\Users\kuroc\Downloads\cpu\src\top.v" type="verilog"/>
         <File path="C:\Users\kuroc\Downloads\cpu\src\uart.v" type="verilog"/>
-        <File path="C:\Users\kuroc\Downloads\cpu\src\core.v" type="verilog"/>
-        <File path="C:\Users\kuroc\Downloads\cpu\src\defs.vh" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>
